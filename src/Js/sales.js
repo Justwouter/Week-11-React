@@ -1,57 +1,50 @@
-import React from 'react';
-import "../css/MainPage.css"
-import Ticket from '../components/content/sales/Ticket';
-import updateTable from '../Js/cart';
-// import updateCart from '../Js/sales';
-
-const Sales = () => {
-    return (
-
-        <div>
-            {/* <!-- Kaartverkoop buttons --> */}
-            <div className="Kaartjes">
-                <Ticket id="1" name="Kinder Kaartje" price={2.5} add={add} remove={remove}/>
-                <Ticket id="2" name="Volwassenen Kaartje" price={5} add={add} remove={remove}/>
-                <Ticket id="3" name="Bejaarden Kaartje" price={10} add={add} remove={remove}/>
-            </div>
-
-            {/* <!-- Cart table --> */}
-            <div className="cart">
-                <table>
-                    <tbody id="tbody">
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <td>Totaal:</td>
-                            <td id="totalitems">0</td>
-                            <td id="totalprice">€0</td>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-            <button id="Nukecart" onClick={NukeIt}>Remove all items</button>
-            {/* <!-- WeatherForecast --> */}
-            <div className="WeatherStation">
-                <table>
-                    <tbody id="weeklyweather">
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
-    )
-};
-
-export default Sales;
-
-
-// Old sales support code
+import updateTable from "/Js/cart.js"
 
 let itemsincart = 0;
 let totalprice = 0;
 let cart = {};
 
+//If the values exist, load them from the device storage.
+function loaddata(){
+    if (localStorage.getItem("count")) {
+        itemsincart = parseInt(localStorage.getItem("count"));
+    }
+    
+    if (localStorage.getItem("sum")) {
+        totalprice = parseInt(localStorage.getItem("sum"));
+    }
+    
+    if (localStorage.getItem("cart")) {
+        cart = JSON.parse(localStorage.getItem("cart"));
+    }
+    
+    updateCart();
+    
+
+}
+
+// // Add a click event for the add buttons.
+// let buttons = document.querySelectorAll(".Kaartjes .addition ");
+// for (let i = 0; i < buttons.length; i++) {
+//     let button = buttons[i];
+//     button.addEventListener("click", add);
+// }
+
+// buttons = document.querySelectorAll(".Kaartjes .subtraction ");
+// for (let i = 0; i < buttons.length; i++) {
+//     let button = buttons[i];
+//     button.addEventListener("click", remove);
+// }
+
+// buttons = document.querySelectorAll("#Nukecart ");
+// for (let i = 0; i < buttons.length; i++) {
+//     let button = buttons[i];
+//     button.addEventListener("click", NukeIt);
+// }
+
+
+
+// Actual logic for the addition event. If an object doesn't exist, make one.
 function add(event) {
     let price = Number(event.target.dataset.price);
     let name = event.target.dataset.name;
@@ -76,6 +69,7 @@ function add(event) {
     updateCart();
 }
 
+// Logic for removal event, removes an item with the given id from the cart, price and total items before saving.
 function remove(event) {
     let id = event.target.dataset.id;
 
@@ -86,7 +80,7 @@ function remove(event) {
             itemsincart--;
             totalprice -= price;
         }
-        if (cart[id].amount === 0) {
+        if (cart[id].amount == 0) {
             delete cart[id]
         }
         localStorage.setItem("cart", JSON.stringify(cart));
@@ -114,7 +108,10 @@ function NukeIt() {
 
 // Updates the total items/price displayed on the page and in the device storage to the values currently in the script.
 function updateCart() {
+    loaddata();
     localStorage.setItem("sum", totalprice);
     localStorage.setItem("count", itemsincart);
     updateTable()
 }
+
+export default updateCart();

@@ -1,10 +1,15 @@
 import React from 'react';
 import "../css/MainPage.css"
+import MainContentItem from '../components/content/MainContentItem';
 
 
 const Home = () => {
     return (
-        <h1>lollol</h1>
+        <div>
+            <MainContentItem number={1} image="..//Images/Promo/OneCoaster.jpg" text="Lorem Ipsum, dolor sit amet" />
+            <MainContentItem number={2} image="..//Images/Promo/OneCoaster.jpg" text="Lorem Ipsum, dolor sit amet" />
+        </div>
+
     )
 };
 
