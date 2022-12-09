@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Titan+One&display=swap");
+
+
+/* Header */
+
+.MainPageHeader {
+
+    /* align-self: center; */
+    flex-grow: 1;
+    /* margin-left: 15%;
+    margin-right: 15%; */
+    border-radius: 25px;
+    border: 3px solid crimson;
+    background-color: crimson;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    text-align: center;
+    /* These three lines center the navbar.
+       This took so damn long... */
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -0%);
+}
+
+.HeaderRow {
+    box-sizing: border-box;
+    display: flex;
+    position: static;
+}
+
+.HeaderLogo {
+    border-radius: 25px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-sizing: border-box;
+    display: flex;
+    line-height: normal;
+    position: static;
+    order: 0;
+    border-right: 1px solid gray;
+    background-color: white;
+
+}
+
+.MainLogoImage {
+    box-sizing: border-box;
+    display: block;
+    position: static;
+
+}
+
+.HeaderContent {
+    flex-grow: 1;
+    border-radius: 25px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: white;
+}
+
+.HeaderNavigation {
+    display: flex;
+    box-sizing: border-box;
+    position: relative;
+
+}
+
+.MainNavRow {
+    flex-grow: 1;
+}
+
+.NavElements {
+    display: flex;
+    position: relative;
+    text-align: right;
+
+}
+
+.NavListItem {
+    list-style-type: none;
+    text-decoration: none;
+    margin-top: 1%;
+    /* margin-bottom: %; */
+
+}
+
+.NavListLink {
+    max-width: 10vw;
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 10vw;
+    /* background-color: green; */
+    padding: 14px;
+    /* margin:0 0 0px 20px;   */
+    text-align: center;
+    border-color: black;
+    border-width: 10px;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    flex-grow: 1;
+}
+
+.NavListLink:hover {
+    color: #fff;
+    box-shadow: inset 300px 0 0 0 #54b3d6;
+    ;
+}
+
+
+
+
+
+/* Main content space */
+.MainPageContentArea {
+    display: flex;
+    height: 1800px;
+    margin-top: 10%;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 5%;
+    display: block;
+    background-color: whitesmoke;
+}
+
+.MainPageItem {
+    margin-top: 100px;
+}
+
+.MainPageContent1 {
+    display: flex;
+    background-color: green;
+}
+
+.PromoImage1 {
+    height: 10rem;
+    order: 0;
+}
+
+.MainPageContent2 {
+    text-align: left;
+    display: flex;
+    background-color: blue;
+    flex-direction: row-reverse;
+
+}
+
+.MPContentText {
+    text-align: right;
+    align-self: right;
+    order: 1;
+    margin: 10px;
+
+}
+
+
+.MPPromoImage2 {
+    height: 10rem;
+    order: 0;
+    align-self: right;
+    right: 0px;
+}
+
+
+
+
+
+
+
+/* Footer */
+.footer-basic {
+    padding: 40px 0;
+    background-color: #ffffff;
+    color: #4b4c4d;
+}
+
+.footer-basic ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.footer-basic li {
+    padding: 0 10px;
+}
+
+.footer-basic ul a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.footer-basic ul a:hover {
+    opacity: 1;
+}
+
+
+/* Animations! */
+@media (prefers-reduced-motion: no-preference) {
+    .HeaderLogo :hover {
+        animation: Image-Animation infinite 20s linear;
+    }
+
+    /* .MainPageItem {
+        animation: rotate-Animation infinite 10s linear;
+    } */
+}
+
+
+@keyframes Image-Animation {
+    from {
+
+        /* transform: rotate(360deg); */
+        transform: rotate3d(0deg);
+    }
+
+    50% {
+        color: crimson;
+        border-color: blue;
+        transform: rotate3d(0, 1, 0.5, 3.142rad);
+
+
+    }
+
+    to {
+        transform: rotate3d(1, 1, 1, 360deg);
+        border-radius: 25px;
+
+
+        /* transform: rotate(0deg); */
+    }
+}
+
+@keyframes rotate-Animation {
+    from {
+        transform: rotateY(0deg);
+        border-radius: 25%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    50% {
+        border-radius: 25%;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    to {
+        transform: rotateY(365deg);
+        border-radius: 25%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
+}
+
+body,
+html {
+    height: 100%;
+    
+}
+body{
+    background-image: url("../Images/halloween.jpg");
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax {
+    background-image: url("../Images/halloween.jpg");
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
