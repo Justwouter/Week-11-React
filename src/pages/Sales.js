@@ -1,15 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState} from 'react';
 import "../css/MainPage.css"
 import Ticket from '../components/content/sales/Ticket';
 import updateTable from '../Js/cart';
 import displaydata from '../Js/weatherforecast';
 
 const Sales = () => {
-
+    const [sum, setSum] = useState(0);
+    
     useEffect(() => {
+        loadToLocal();
         updateTable();
         displaydata();
-    });
+        //This technically isn't incorrect but I don't have the time to rework it.
+        setSum(Number(localStorage.getItem("sum")))
+    },[sum] );
+
+    
     
     return (
 
@@ -30,7 +36,7 @@ const Sales = () => {
                         <tr>
                             <th>Totaal:</th>
                             <th id="totalitems">0</th>
-                            <th id="totalprice">€0</th>
+                            <th id="totalprice">€{sum}</th>
                         </tr>
                     </thead>
                 </table>
@@ -59,6 +65,7 @@ let totalprice = 0;
 let cart = {};
 
 function add(event) {
+    
     let price = Number(event.target.dataset.price);
     let name = event.target.dataset.name;
     let id = event.target.dataset.id;
@@ -77,7 +84,7 @@ function add(event) {
     itemsincart++;
     totalprice += price;
 
-    console.log(cart);
+    //console.log(cart); Debug
     updateCart();
 }
 
@@ -118,8 +125,16 @@ function NukeIt() {
 
 // Updates the total items/price displayed on the page and in the device storage to the values currently in the script.
 function updateCart() {
+
     localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("sum", totalprice);
     localStorage.setItem("count", itemsincart);
     updateTable();
+}
+
+//Loads vars from storage to the local env
+function loadToLocal(){
+    itemsincart = Number(localStorage.getItem("count"))
+    totalprice = Number(localStorage.getItem("sum"))
+    cart = JSON.parse(localStorage.getItem("cart"));
 }

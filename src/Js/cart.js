@@ -2,7 +2,14 @@ function updateTable() {
     let cartItems = {};
     //Loads the cart from the JSON in device storage.
     if (localStorage.getItem("cart")) {
-        cartItems = JSON.parse(localStorage.getItem("cart"));
+        try{
+            cartItems = JSON.parse(localStorage.getItem("cart"));
+        }
+        catch{
+            localStorage.clear();
+            cartItems = JSON.parse(localStorage.getItem("cart"));
+        }
+        
     }
 
     let tablebody = document.getElementById("tbody");
