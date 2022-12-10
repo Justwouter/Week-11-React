@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "../css/MainPage.css"
 import Ticket from '../components/content/sales/Ticket';
 import updateTable from '../Js/cart';
-// import updateCart from '../Js/sales';
+import displaydata from '../Js/weatherforecast';
 
 const Sales = () => {
+
+    useEffect(() => {
+        updateTable();
+        displaydata();
+    });
+    
     return (
 
         <div>
             {/* <!-- Kaartverkoop buttons --> */}
             <div className="Kaartjes">
-                <Ticket id="1" name="Kinder Kaartje" price={2.5} add={add} remove={remove}/>
-                <Ticket id="2" name="Volwassenen Kaartje" price={5} add={add} remove={remove}/>
-                <Ticket id="3" name="Bejaarden Kaartje" price={10} add={add} remove={remove}/>
+                <Ticket id="1" name="Kinder Kaartje" price={2.5} add={add} remove={remove} />
+                <Ticket id="2" name="Volwassenen Kaartje" price={5} add={add} remove={remove} />
+                <Ticket id="3" name="Bejaarden Kaartje" price={10} add={add} remove={remove} />
             </div>
 
             {/* <!-- Cart table --> */}
@@ -22,9 +28,9 @@ const Sales = () => {
                     </tbody>
                     <thead>
                         <tr>
-                            <td>Totaal:</td>
-                            <td id="totalitems">0</td>
-                            <td id="totalprice">€0</td>
+                            <th>Totaal:</th>
+                            <th id="totalitems">0</th>
+                            <th id="totalprice">€0</th>
                         </tr>
                     </thead>
                 </table>
@@ -46,7 +52,7 @@ const Sales = () => {
 export default Sales;
 
 
-// Old sales support code
+// Old sales support code adapted for usage in React
 
 let itemsincart = 0;
 let totalprice = 0;
@@ -72,7 +78,6 @@ function add(event) {
     totalprice += price;
 
     console.log(cart);
-    localStorage.setItem("cart", JSON.stringify(cart));
     updateCart();
 }
 
@@ -89,7 +94,6 @@ function remove(event) {
         if (cart[id].amount === 0) {
             delete cart[id]
         }
-        localStorage.setItem("cart", JSON.stringify(cart));
         updateCart();
     }
     else {
@@ -114,7 +118,8 @@ function NukeIt() {
 
 // Updates the total items/price displayed on the page and in the device storage to the values currently in the script.
 function updateCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("sum", totalprice);
     localStorage.setItem("count", itemsincart);
-    updateTable()
+    updateTable();
 }

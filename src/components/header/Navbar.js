@@ -5,7 +5,8 @@ import NavLogo from './NavLogo';
 
 function Navbar() {
     return (
-        // I tried making the walibi site and id didn't work out so now we have this abomination of html
+        // I tried making the walibi site and it didn't work out so now we have this abomination of html
+        // Which can't be changed becouse the css is held together with spit and duct tape
         <header className="MainPageHeader">
             <div className="HeaderRow">
                 <NavLogo link="/" image="/Images/TransLogo.png" />
@@ -15,7 +16,7 @@ function Navbar() {
                             <ul className="NavElements">
                                 <NavItem link="/" text="Home"/>
                                 <NavItem link="/AboutUs" text="Informatie"/>
-                                <NavItem link="/SalesPage" text="Koop Kaartje" />
+                                <NavItem link="/SalesPage" text="Koop Kaartjes" />
                             </ul>
                         </nav>
                     </div>

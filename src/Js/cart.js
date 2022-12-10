@@ -30,7 +30,7 @@ function updateTable() {
         tr.appendChild(amount_thread);
 
         let price_thread = document.createElement("td");
-        price_thread.textContent = item.price * item.amount;
+        price_thread.textContent = "€"+(item.price * item.amount);
         tr.appendChild(price_thread);
 
         tablebody.prepend(tr)
